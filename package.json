@@ -1,0 +1,76 @@
+{
+  "name": "Connection",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app/main/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start:main": "electron .",
+    "start:render": "cd app/renderer/src/main && npm start",
+    "start": "concurrently \"npm run start:render\" \"wait-on http://localhost:9000 && npm run start:main\" ",
+    "build": "cd app/renderer/src/main && npm run build",
+    "pack:mac": "npm run build && NPM_CONFIG_ELECTRON_MIRROR=http://npm.taobao.org/mirrors/electron/ electron-builder build --mac",
+    "pack:wi": "npm run build && cross-env NPM_CONFIG_ELECTRON_MIRROR=http://npm.taobao.org/mirrors/electron/ electron-builder build --win --ia32",
+    "pack:win": " cross-env NPM_CONFIG_ELECTRON_MIRROR=http://npm.taobao.org/mirrors/electron/ electron-builder build --win --ia32",
+    "mac": "electron-builder build --mac"
+  },
+  "keywords": [],
+  "author": "yaoyuanrong",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^7.2.1",
+    "electron": "^19.0.1",
+    "electron-builder": "^23.3.3",
+    "electron-builder-squirrel-windows": "^23.5.1",
+    "electron-rebuild": "^3.2.9",
+    "node-abi": "^3.25.0",
+    "wait-on": "^6.0.1"
+  },
+  "dependencies": {
+    "about-window": "^1.15.2",
+    "electron-is-dev": "^2.0.0",
+    "robotjs": "^0.6.0",
+    "vkey": "^1.0.1",
+    "ws": "^8.8.0"
+  },
+  "build": {
+    "appId": "com.geektime.electron",
+    "productName": "Connection",
+    "files": "app",
+    "asar": false,
+    "extraFiles": [
+      "app/renderer/**/src"
+    ],
+    "directories": {
+      "buildResources": "resource",
+      "output": "release"
+    },
+    "copyright": "Copyright © 2022 dragon",
+    "mac": {
+      "target": [
+        "dmg",
+        "zip"
+      ]
+    },
+    "dmg": {
+      "window": {
+        "width": 540,
+        "height": 380
+      },
+      "contents": [
+        {
+          "x": 410,
+          "y": 180,
+          "type": "link",
+          "path": "/Applications"
+        },
+        {
+          "x": 130,
+          "y": 180,
+          "type": "file"
+        }
+      ],
+      "iconSize": 128
+    }
+  }
+}
