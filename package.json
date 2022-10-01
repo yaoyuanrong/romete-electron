@@ -71,6 +71,22 @@
         }
       ],
       "iconSize": 128
+    },
+    "win": {
+      "icon": "resources/icon.ico",
+      "target": [
+        "squirrel",
+        "nsis"
+      ]
+    },
+    "nsis": {
+      "oneClick": false,
+      "language": "2052",
+      "perMachine": true,
+      "allowToChangeInstallationDirectory": true
+    },
+    "squirrelWindows": {
+      "iconUrl": "https://raw.githubusercontent.com/dengyaolong/geektime-electron/master/img/icon.ico"
     }
   }
 }

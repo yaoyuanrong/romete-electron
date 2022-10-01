@@ -2,9 +2,9 @@ const {autoUpdater, app, dialog } = require('electron')
 // const { autoUpdater } = require('electron-updater');
 
 if(process.platform == 'darwin') {
-  autoUpdater.setFeedURL('http://192.168.128.191:33855/darwin?version=' + app.getVersion())
+  autoUpdater.setFeedURL('http://127.0.0.1:33855/darwin?version=' + app.getVersion())
 } else {
-  autoUpdater.setFeedURL('http://192.168.128.191:33855/win32?version=' + app.getVersion())
+  autoUpdater.setFeedURL('http://127.0.0.1:33855/win32?version=' + app.getVersion())
 }
 
 autoUpdater.checkForUpdates() // 定是轮训，服务端推送
