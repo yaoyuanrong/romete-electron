@@ -9,6 +9,9 @@ function create() {
     webPreferences: {
         nodeIntegration: true,
         contextIsolation: false,
+        nodeIntegration: true,
+        nodeIntegrationInWorker: true,
+        nodeIntegrationInSubFrames: true
     }
   })
   win.loadFile(path.resolve(__dirname, '../../renderer/pages/control/index.html'))
