@@ -9,11 +9,9 @@ function create() {
     webPreferences: {
         nodeIntegration: true,
         contextIsolation: false,
-        nodeIntegration: true,
-        nodeIntegrationInWorker: true,
-        nodeIntegrationInSubFrames: true
     }
   })
+  // win.webContents.openDevTools()
   win.loadFile(path.resolve(__dirname, '../../renderer/pages/control/index.html'))
 }
 function send(channel, ...args) {

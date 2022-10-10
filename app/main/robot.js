@@ -7,14 +7,22 @@
 const { ipcMain } = require('electron')
 const robot = require('robotjs')
 const vkey = require('vkey')
-function handleMouse(data) {
-  // let { clientX, clientY, screen: { width, height }, video: {width, hieght} } =  data
-  let { clientX, clientY, screen, video } = data
+function screenData(data) {
+  let {clientX, clientY, screen, video} = data
+  // data {clientX, clientY, screen: {width, height}, video: {width, height}}
   let x = clientX * screen.width / video.width
   let y = clientY * screen.height / video.height
-  console.log(robot)
-  robot.moveMouse(x, y)
+  console.log('屏幕数据屏幕数据屏幕数据',data, x, y)
+
+  return { x,y }
+}
+function handleMouse(data) {
+  screenData(data)
   robot.mouseClick()
+}
+function handleMouseMove(data) {
+  let {x,y} = screenData(data)
+  robot.moveMouse(x, y)
 }
 function handleKey(data) {
   // data {KeyCode, meta, alt, ctrl, shift}
@@ -27,6 +35,9 @@ function handleKey(data) {
   if(key[0] !== '<') { // <shift>
     robot.keyTap(key, modifiers)
   }
+  let RexStr = /\<|\>|\"|\'|\&/g
+  robot.keyTap(key.replace(RexStr,''));
+
 }
 module.exports = function () {
   ipcMain.on('robot', (e, type, data) => {
@@ -35,6 +46,8 @@ module.exports = function () {
       handleMouse(data)
     }else if(type === 'key') {
       handleKey(data)
+    }else if (type === 'mouseMove') {
+      handleMouseMove(data)
     }
   })
 }

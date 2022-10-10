@@ -8,15 +8,15 @@ const pc = new window.RTCPeerConnection({}) // 创建RTC
 //在链接中新增数据通道 reliable是否必须可达的
 const dc = pc.createDataChannel('robotchannel', {reliable: false})
 dc.onopen = function() {
-  console.log('消息通道建立成')
   peer.on('robot', (type, data) => {
+    console.log('open开启')
     dc.send(JSON.stringify({type, data}))
   })
 }
 dc.onmessage = function (e) {
   console.log('message', e)
 }
-
+dc.onerror = (e) => {console.log('error',e)}
 pc.onicecandidate = function (e) {
   console.log('控制端candidate',e.candidate)
   if (e.candidate) {
@@ -72,8 +72,8 @@ pc.onaddstream = function (e) { // 监听流的增加
 peer.on('robot', (type, data) => {
   if(type === 'mouse') {
     data.screen = { 
-      width: window.screen.width,
-      height: window.screen.height
+      width: window.screen.width * window.devicePixelRatio,
+      height: window.screen.height* window.devicePixelRatio
     }
   }
   ipcRenderer.send('robot', type, data)

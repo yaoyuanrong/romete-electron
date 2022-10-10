@@ -34,3 +34,13 @@ window.onmouseup = function (e) {
   }
   peer.emit('robot', 'mouse',data)
 }
+window.onmousemove = function (e) {
+  let data = {}
+  data.clientX = e.clientX
+  data.clientY = e.clientY
+  data.video = {
+    width: video.getBoundingClientRect().width,
+    height: video.getBoundingClientRect().height
+  }
+  peer.emit('robot', 'mouseMove',data)
+}
