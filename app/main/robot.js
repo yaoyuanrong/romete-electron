@@ -31,18 +31,22 @@ function handleClickRight() {
   robot.mouseClick('right')
 }
 function handleKey(data) {
-  // data {KeyCode, meta, alt, ctrl, shift}  
-  const modifiers = []
-  if(data.meta)modifiers.push('meta')
-  if(data.shift)modifiers.push('shift')
-  if(data.alt)modifiers.push('alt')
-  if(data.ctrl)modifiers.push('ctrl')
-  let key = vkey[data.keyCode].toLowerCase()
-  if(key[0] !== '<') { // <shift>
-    robot.keyTap(key, modifiers)
+  // data {KeyCode, meta, alt, ctrl, shift} 
+  try {
+    const modifiers = []
+    if(data.meta)modifiers.push('meta')
+    if(data.shift)modifiers.push('shift')
+    if(data.alt)modifiers.push('alt')
+    if(data.ctrl)modifiers.push('ctrl')
+    let key = vkey[data.keyCode].toLowerCase()
+    if(key[0] !== '<') { // <shift>
+      robot.keyTap(key, modifiers)
+    }
+    let RexStr = /\<|\>|\"|\'|\&/g
+    robot.keyTap(key.replace(RexStr,''));
+  } catch (err) {
+    console.log(err)
   }
-  let RexStr = /\<|\>|\"|\'|\&/g
-  robot.keyTap(key.replace(RexStr,''));
 
 }
 module.exports = function () {
