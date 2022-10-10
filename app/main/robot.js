@@ -50,7 +50,7 @@ function handleMouseMove(data) {
     robot.moveMouse(x, y)
   }
 }
-function handleMousewheel (x ,y) {
+function handleMousewheel ({x ,y}) {
   robot.scrollMouse(x, y);
 }
 function handleKey(data) {
@@ -86,7 +86,7 @@ module.exports = function () {
     } else if (type === 'down' || type === 'up') {
       handleMouseDownorUp(data, type)
     } else if (type === 'mousewheel') {
-      handleMousewheel(x,y)
+      handleMousewheel(data)
     }
   })
 }
