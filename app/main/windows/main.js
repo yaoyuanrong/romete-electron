@@ -24,7 +24,7 @@ function create () {
 	win.on('ready-to-show', () => {
 		win.show()
 	})
-	// win.webContents.openDevTools()
+	win.webContents.openDevTools()
 	if(isDev){
 		win.loadURL('http://localhost:9000')
 	} else {
@@ -42,4 +42,5 @@ function close() {
 	willQuitApp = true
 	win.close()
 }
+
 module.exports = { create, send, show, close }

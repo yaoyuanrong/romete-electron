@@ -4,13 +4,14 @@
  *         -无服务端依赖，p2p传输
  *         -基于sctp（传输层，有着tcp、udp的优点）
  */
-const { ipcMain } = require('electron')
+const { ipcMain, screen } = require('electron')
 const robot = require('robotjs')
 const vkey = require('vkey')
 function screenData(data) {
+  const size = screen.getPrimaryDisplay().workAreaSize
   data.screen = {
-    width: window.screen.width * window.devicePixelRatio,
-    height: window.screen.height* window.devicePixelRatio,
+    width: size.width,
+    height: size.height,
   }
   let {clientX, clientY, screen, video} = data
   // data {clientX, clientY, screen: {width, height}, video: {width, height}}
@@ -54,7 +55,7 @@ function handleKey(data) {
 
 }
 module.exports = function () {
-  ipcMain.on('robot', (e, type, data) => {
+  ipcMain, .on('robot', (e, type, data) => {
     console.log(type,data)
     if(type === 'mouse') {
       handleMouse(data)

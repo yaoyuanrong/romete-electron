@@ -73,8 +73,6 @@ peer.on('robot', (type, data) => {
   //   data.screen = { 
   //     width: window.screen.width * window.devicePixelRatio,
   //     height: window.screen.height* window.devicePixelRatio,
-  //     width: window.screen.width,
-  //     height: window.screen.height
   //   }
   // }
   ipcRenderer.send('robot', type, data)
