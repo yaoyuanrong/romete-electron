@@ -9,10 +9,10 @@ const robot = require('robotjs')
 const vkey = require('vkey')
 const { size } = require('./windows/main')
 function screenData(data) {
-  console.log('localScreen', size)
+  console.log('localScreen', size())
   data.screen = {
-    width: size.width,
-    height: size.height,
+    width: size().width,
+    height: size().height,
   }
   let {clientX, clientY, screen, video} = data
   // data {clientX, clientY, screen: {width, height}, video: {width, height}}

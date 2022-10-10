@@ -1,4 +1,4 @@
-const { app } = require('electron')
+const { app, screen } = require('electron')
 const handleIPC = require('./ipc')
 const { create: createMainWindow, 
 	        show: showMainWindow,
@@ -17,7 +17,7 @@ const gotTheLock = app.requestSingleInstanceLock()
 			createMainWindow()
 			// createControlWindow()
 			handleIPC()
-			
+			console.log(screen.getPrimaryDisplay())
 			// require('./robot.js')()
 			require('./trayAndMenu/index.js')
 		})
