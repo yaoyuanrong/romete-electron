@@ -31,14 +31,20 @@ function handleClick(data, type) {
   // robot.mouseToggle('up')
 }
 
-function handleMouseDown(data) {
-  robot.mouseToggle('down')
+function handleMouseDownorUp(data, type) {
+  if (type === 'up') {
+    robot.mouseToggle('up')
+  } else if (type === 'down') {
+    robot.mouseToggle('down')
+  }
 }
 function handleMouseMove(data) {
   let {x,y} = screenData(data)
   robot.moveMouse(x, y)
 }
-
+function handleMousewheel (x ,y) {
+  robot.scrollMouse(x, y);
+}
 function handleKey(data) {
   // data {KeyCode, meta, alt, ctrl, shift} 
   try {
@@ -68,11 +74,12 @@ module.exports = function () {
     }else if (type === 'mouseMove') {
       handleMouseMove(data)
     }else if (type === 'clickRight') {
-      handleMouse(data, 'clickRight')
+      handleClick(data, 'clickRight')
+    } else if (type === 'down' || type === 'up') {
+      handleMouseDownorUp(data, type)
+    } else if (type === 'mousewheel') {
+      handleMousewheel(x,y)
     }
-    //else if (type === 'mouseDown') {
-    //   handleMouseDown(data)
-    // }
   })
 }
 

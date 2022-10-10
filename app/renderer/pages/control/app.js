@@ -38,7 +38,11 @@ window.onclick = function (e) {
 }
 window.onmousedown = function (e) {
   let data = sreenData(e)
-  peer.emit('robot', 'mouseDown',data)
+  peer.emit('robot', 'down',data)
+} 
+window.onmouseup= function (e) {
+  let data = sreenData(e)
+  peer.emit('robot', 'up',data)
 } 
 window.onmousemove = function (e) {
   let data = sreenData(e)
@@ -47,4 +51,11 @@ window.onmousemove = function (e) {
 window.oncontextmenu = function (e) {
   let data = sreenData(e)
   peer.emit('robot', 'clickRight',data)
+}
+
+window.onmousewheel = function (e) {
+  peer.emit('robot', 'mousewheel',{
+    x:e.deltaX,
+    y:e.deltaY
+  })
 }
