@@ -2,16 +2,6 @@ const EventEmitter = require('events')
 const peer = new EventEmitter()
 const { ipcRenderer } = require('electron')
 
-peer.on('robot', (type, data) => {
-  if(type === 'mouse') {
-    data.screen = { 
-      width: window.screen.width  * window.devicePixelRatio,
-      height: window.screen.height* window.devicePixelRatio,
-   }
-  }
-  ipcRenderer.send('robot', type, data)
-})
-
 const pc = new window.RTCPeerConnection({}) // 创建RTC
 
 //在链接中新增数据通道 reliable是否必须可达的
@@ -79,15 +69,14 @@ pc.onaddstream = function (e) { // 监听流的增加
   peer.emit('add-stream', e.stream)
 }
 peer.on('robot', (type, data) => {
-  if(type == 'mouse') {
-    data.screen = { 
-      width: window.screen.width * window.devicePixelRatio,
-      height: window.screen.height* window.devicePixelRatio
-      // width: window.screen.width,
-      // height: window.screen.height
-    }
-  }
+  // if(type == 'mouse' || type == 'mouseMove') {
+  //   data.screen = { 
+  //     width: window.screen.width * window.devicePixelRatio,
+  //     height: window.screen.height* window.devicePixelRatio,
+  //     width: window.screen.width,
+  //     height: window.screen.height
+  //   }
+  // }
   ipcRenderer.send('robot', type, data)
 })
-
 module.exports = peer

@@ -8,6 +8,10 @@ const { ipcMain } = require('electron')
 const robot = require('robotjs')
 const vkey = require('vkey')
 function screenData(data) {
+  data.screen = {
+    width: window.screen.width * window.devicePixelRatio,
+    height: window.screen.height* window.devicePixelRatio,
+  }
   let {clientX, clientY, screen, video} = data
   // data {clientX, clientY, screen: {width, height}, video: {width, height}}
   let x = clientX * screen.width / video.width
