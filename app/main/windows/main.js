@@ -1,4 +1,4 @@
-const { app,BrowserWindow } = require('electron')
+const { app,BrowserWindow,screen } = require('electron')
 const path = require('path')
 const isDev = require('electron-is-dev')
 let win
@@ -42,5 +42,8 @@ function close() {
 	willQuitApp = true
 	win.close()
 }
-
-module.exports = { create, send, show, close }
+function localScreen () {
+	const size = screen.getPrimaryDisplay().workAreaSize
+	return size
+}
+module.exports = { create, send, show, close, localScreen }

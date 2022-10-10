@@ -7,11 +7,12 @@
 const { ipcMain, screen } = require('electron')
 const robot = require('robotjs')
 const vkey = require('vkey')
+const { localScreen} = require('./windows/main')
 function screenData(data) {
-  const size = screen.getPrimaryDisplay().workAreaSize
+  console.log('localScreen', localScreen)
   data.screen = {
-    width: size.width,
-    height: size.height,
+    width: localScreen.width,
+    height: localScreen.height,
   }
   let {clientX, clientY, screen, video} = data
   // data {clientX, clientY, screen: {width, height}, video: {width, height}}
@@ -55,7 +56,7 @@ function handleKey(data) {
 
 }
 module.exports = function () {
-  ipcMain, .on('robot', (e, type, data) => {
+  ipcMain.on('robot', (e, type, data) => {
     console.log(type,data)
     if(type === 'mouse') {
       handleMouse(data)
