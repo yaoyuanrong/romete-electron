@@ -44,8 +44,8 @@ function close() {
 	win.close()
 }
 function size () {
-	let { workAreaSize,scaleFactor } = screen.getPrimaryDisplay().workAreaSize
-	size = {
+	let { workAreaSize,scaleFactor } = screen.getPrimaryDisplay()
+	let size = {
 		width: workAreaSize.width * scaleFactor,
 		height:workAreaSize.height * scaleFactor
 	}

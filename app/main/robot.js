@@ -22,10 +22,15 @@ function screenData(data) {
 
   return { x,y }
 }
-function handleMouse(data) {
-  robot.mouseClick()
+function handleMouse(data, type) {
+  if (type === 'up') {
+    robot.mouseClick()
+  } else if (type === 'clickRight') {
+    robot.mouseClick('right')
+  }
   // robot.mouseToggle('up')
 }
+
 function handleMouseDown(data) {
   robot.mouseToggle('down')
 }
@@ -33,9 +38,7 @@ function handleMouseMove(data) {
   let {x,y} = screenData(data)
   robot.moveMouse(x, y)
 }
-function handleClickRight() {
-  robot.mouseClick('right')
-}
+
 function handleKey(data) {
   // data {KeyCode, meta, alt, ctrl, shift} 
   try {
@@ -59,15 +62,15 @@ module.exports = function () {
   ipcMain.on('robot', (e, type, data) => {
     console.log(type,data)
     if(type === 'mouse') {
-      handleMouse(data)
+      handleMouse(data,'up')
     }else if(type === 'key') {
       handleKey(data)
     }else if (type === 'mouseMove') {
       handleMouseMove(data)
-    } 
-    // else if (type === 'clickRight') {
-    //   handleClickRight(data)
-    // }else if (type === 'mouseDown') {
+    }else if (type === 'clickRight') {
+      handleMouse(data, 'clickRight')
+    }
+    //else if (type === 'mouseDown') {
     //   handleMouseDown(data)
     // }
   })
