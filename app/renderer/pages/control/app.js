@@ -32,9 +32,9 @@ window.onkeydown = function (e) {
   }
   peer.emit('robot', 'key', data)
 }
-window.onmouseup = function (e) {
+window.onclick = function (e) {
   let data = sreenData(e)
-  peer.emit('robot', 'mouse',data)
+  peer.emit('robot', 'click',data)
 }
 window.onmousedown = function (e) {
   let data = sreenData(e)

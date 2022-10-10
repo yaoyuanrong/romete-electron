@@ -22,8 +22,8 @@ function screenData(data) {
 
   return { x,y }
 }
-function handleMouse(data, type) {
-  if (type === 'up') {
+function handleClick(data, type) {
+  if (type === 'click') {
     robot.mouseClick()
   } else if (type === 'clickRight') {
     robot.mouseClick('right')
@@ -61,8 +61,8 @@ function handleKey(data) {
 module.exports = function () {
   ipcMain.on('robot', (e, type, data) => {
     console.log(type,data)
-    if(type === 'mouse') {
-      handleMouse(data,'up')
+    if(type === 'click') {
+      handleClick(data,'click')
     }else if(type === 'key') {
       handleKey(data)
     }else if (type === 'mouseMove') {
