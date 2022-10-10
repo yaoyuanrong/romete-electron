@@ -7,9 +7,9 @@ const isDev = require('electron-is-dev')
 // const { create: createControlWindow } = require('./windows/control')
 // 禁止多开
 const gotTheLock = app.requestSingleInstanceLock()
-	// if(!gotTheLock) {
-	// 	app.quit()
-	// } else {
+	if(!gotTheLock) {
+		app.quit()
+	} else {
 		app.on('second-instance', () => {
 			showMainWindow()
 		})
@@ -17,7 +17,7 @@ const gotTheLock = app.requestSingleInstanceLock()
 			createMainWindow()
 			// createControlWindow()
 			handleIPC()
-			require('./robot.js')()
+			// require('./robot.js')()
 			require('./trayAndMenu/index.js')
 		})
 		app.on('before-quit', () => {
@@ -31,5 +31,5 @@ const gotTheLock = app.requestSingleInstanceLock()
 				require('./updater.js')
 			}
 		})
-// }
+}
 

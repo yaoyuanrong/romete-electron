@@ -28,6 +28,7 @@
   },
   "dependencies": {
     "about-window": "^1.15.2",
+    "deasync": "^0.1.28",
     "electron-is-dev": "^2.0.0",
     "robotjs": "^0.6.0",
     "vkey": "^1.0.1",
@@ -71,6 +72,22 @@
         }
       ],
       "iconSize": 128
+    },
+    "win": {
+      "icon": "resources/icon.ico",
+      "target": [
+        "squirrel",
+        "nsis"
+      ]
+    },
+    "nsis": {
+      "oneClick": false,
+      "language": "2052",
+      "perMachine": true,
+      "allowToChangeInstallationDirectory": true
+    },
+    "squirrelWindows": {
+      "iconUrl": "https://raw.githubusercontent.com/dengyaolong/geektime-electron/master/img/icon.ico"
     }
   }
 }

@@ -26,9 +26,11 @@ module.exports = function () {
   signal.on('controlled', (data) => {
     console.log('controlled')
     createControlWindow()
+
     sendMainWindow('control-state-change', data.remote, 1)
   })
   signal.on('be-controlled', (data) => {
+		require('./robot.js')()
     sendMainWindow('control-state-change', data.remote, 2)
   })
   

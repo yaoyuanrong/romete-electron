@@ -7,8 +7,8 @@ function create() {
     width: 1000,
     height: 680,
     webPreferences: {
-        nodeIntegration: true,
-        contextIsolation: false,
+      nodeIntegration: true,
+      contextIsolation: false
     }
   })
   win.loadFile(path.resolve(__dirname, '../../renderer/pages/control/index.html'))

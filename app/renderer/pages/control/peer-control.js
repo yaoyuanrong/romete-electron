@@ -5,8 +5,8 @@ const { ipcRenderer } = require('electron')
 peer.on('robot', (type, data) => {
   if(type === 'mouse') {
     data.screen = { 
-      width: window.screen.width,
-      height: window.screen.height
+      width: window.screen.width  * window.devicePixelRatio,
+      height: window.screen.height* window.devicePixelRatio,
    }
   }
   ipcRenderer.send('robot', type, data)
@@ -18,6 +18,7 @@ const pc = new window.RTCPeerConnection({}) // 创建RTC
 const dc = pc.createDataChannel('robotchannel', {reliable: false})
 dc.onopen = function() {
   peer.on('robot', (type, data) => {
+    console.log('open开启')
     dc.send(JSON.stringify({type, data}))
   })
 }
