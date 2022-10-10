@@ -4,15 +4,15 @@
  *         -无服务端依赖，p2p传输
  *         -基于sctp（传输层，有着tcp、udp的优点）
  */
-const { ipcMain, screen } = require('electron')
+const { ipcMain } = require('electron')
 const robot = require('robotjs')
 const vkey = require('vkey')
-const { localScreen} = require('./windows/main')
+const { size } = require('./windows/main')
 function screenData(data) {
-  console.log('localScreen', localScreen)
+  console.log('localScreen', size)
   data.screen = {
-    width: localScreen.width,
-    height: localScreen.height,
+    width: size.width,
+    height: size.height,
   }
   let {clientX, clientY, screen, video} = data
   // data {clientX, clientY, screen: {width, height}, video: {width, height}}

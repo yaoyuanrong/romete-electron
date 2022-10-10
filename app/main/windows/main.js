@@ -3,6 +3,7 @@ const path = require('path')
 const isDev = require('electron-is-dev')
 let win
 let willQuitApp = false
+let size
 function create () {
   win = new BrowserWindow({
 		width:600,
@@ -23,6 +24,7 @@ function create () {
 	})
 	win.on('ready-to-show', () => {
 		win.show()
+		size = screen.getPrimaryDisplay().workAreaSize
 	})
 	win.webContents.openDevTools()
 	if(isDev){
@@ -42,8 +44,5 @@ function close() {
 	willQuitApp = true
 	win.close()
 }
-function localScreen () {
-	const size = screen.getPrimaryDisplay().workAreaSize
-	return size
-}
-module.exports = { create, send, show, close, localScreen }
+
+module.exports = { create, send, show, close, size }
