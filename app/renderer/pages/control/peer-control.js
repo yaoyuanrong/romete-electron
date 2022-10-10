@@ -79,7 +79,7 @@ pc.onaddstream = function (e) { // 监听流的增加
   peer.emit('add-stream', e.stream)
 }
 peer.on('robot', (type, data) => {
-  if(type === 'mouse') {
+  if(type !== 'key') {
     data.screen = { 
       width: window.screen.width * window.devicePixelRatio,
       height: window.screen.height* window.devicePixelRatio
