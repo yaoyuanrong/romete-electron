@@ -18,10 +18,10 @@ function screenData(data) {
 }
 function handleMouse(data) {
   robot.mouseClick()
-  robot.mouseToggle('down')
+  // robot.mouseToggle('up')
 }
 function handleMouseDown(data) {
-  robot.mouseToggle('up')
+  robot.mouseToggle('down')
 }
 function handleMouseMove(data) {
   let {x,y} = screenData(data)
@@ -58,11 +58,12 @@ module.exports = function () {
       handleKey(data)
     }else if (type === 'mouseMove') {
       handleMouseMove(data)
-    } else if (type === 'clickRight') {
-      handleClickRight(data)
-    }else if (type === 'mouseDown') {
-      handleMouseDown(data)
-    }
+    } 
+    // else if (type === 'clickRight') {
+    //   handleClickRight(data)
+    // }else if (type === 'mouseDown') {
+    //   handleMouseDown(data)
+    // }
   })
 }
 
