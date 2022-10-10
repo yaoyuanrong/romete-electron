@@ -17,12 +17,18 @@ function screenData(data) {
   return { x,y }
 }
 function handleMouse(data) {
-  screenData(data)
   robot.mouseClick()
+  robot.mouseToggle('down')
+}
+function handleMouseDown(data) {
+  robot.mouseToggle('up')
 }
 function handleMouseMove(data) {
   let {x,y} = screenData(data)
   robot.moveMouse(x, y)
+}
+function handleClickRight() {
+  robot.mouseClick('right')
 }
 function handleKey(data) {
   // data {KeyCode, meta, alt, ctrl, shift}  
@@ -48,6 +54,10 @@ module.exports = function () {
       handleKey(data)
     }else if (type === 'mouseMove') {
       handleMouseMove(data)
+    } else if (type === 'clickRight') {
+      handleClickRight(data)
+    }else if (type === 'mouseDown') {
+      handleMouseDown(data)
     }
   })
 }
