@@ -25,7 +25,7 @@ dc.onopen = function() {
 dc.onmessage = function (e) {
   console.log('message', e)
 }
-
+dc.onerror = (e) => {console.log('error',e)}
 pc.onicecandidate = function (e) {
   console.log('控制端candidate',e.candidate)
   if (e.candidate) {
@@ -78,4 +78,14 @@ pc.onaddstream = function (e) { // 监听流的增加
   console.log('add-stream', e)
   peer.emit('add-stream', e.stream)
 }
+peer.on('robot', (type, data) => {
+  if(type === 'mouse') {
+    data.screen = { 
+      width: window.screen.width * window.devicePixelRatio,
+      height: window.screen.height* window.devicePixelRatio
+    }
+  }
+  ipcRenderer.send('robot', type, data)
+})
+
 module.exports = peer

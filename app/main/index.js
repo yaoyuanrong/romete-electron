@@ -4,7 +4,7 @@ const { create: createMainWindow,
 	        show: showMainWindow,
 				 close: closeMainWindow } = require('./windows/main')
 const isDev = require('electron-is-dev')
-// const { create: createControlWindow } = require('./windows/control')
+const { create: createControlWindow } = require('./windows/control')
 // 禁止多开
 const gotTheLock = app.requestSingleInstanceLock()
 	if(!gotTheLock) {
@@ -17,6 +17,7 @@ const gotTheLock = app.requestSingleInstanceLock()
 			createMainWindow()
 			// createControlWindow()
 			handleIPC()
+			
 			// require('./robot.js')()
 			require('./trayAndMenu/index.js')
 		})

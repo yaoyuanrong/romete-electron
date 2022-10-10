@@ -1,6 +1,5 @@
 node_modules
 release/*
-app/renderer/pages/main/node_modules
 .DS_Store
 **/**/.DS_Store
 
