@@ -44,11 +44,14 @@ function handleMouseDownorUp(data, type) {
 }
 function handleMouseMove(data) {
   let {x,y} = screenData(data)
-  // if (mouseUpFlag) {
-  //   robot.dragMouse(x, y);
-  // } else {
+  console.log(mouseUpFlag)
+  if (mouseUpFlag) {
+    robot.mouseToggle("down");
+    robot.dragMouse(100, 100);
+    robot.mouseToggle("up");
+  } else {
     robot.moveMouse(x, y)
-  // }
+  }
 }
 function handleMousewheel ({x ,y}) {
   robot.scrollMouse(x, y);
