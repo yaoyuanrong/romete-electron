@@ -9,7 +9,8 @@ const robot = require('robotjs')
 const vkey = require('vkey')
 const { size } = require('./windows/main')
 let mouseUpFlag = false
-
+let startPosition = ''
+let endPosition = ''
 function screenData(data) {
   console.log('localScreen', size())
   data.screen = {
@@ -26,27 +27,28 @@ function screenData(data) {
 }
 function handleClick(data, type) {
   if (type === 'click') {
-    robot.mouseClick()
+    if (startPosition == endPosition) robot.mouseClick()
   } else if (type === 'clickRight') {
     robot.mouseClick('right')
   }
-  // robot.mouseToggle('up')
 }
 
 function handleMouseDownorUp(data, type) {
+  let {x,y} = screenData(data)
   if (type === 'up') {
     robot.mouseToggle('up')
     mouseUpFlag = false
+    endPosition = x + y
   } else if (type === 'down') {
     robot.mouseToggle('down')
     mouseUpFlag = true
+    startPosition = x + y
   }
 }
 function handleMouseMove(data) {
   let {x,y} = screenData(data)
   console.log(mouseUpFlag,x,y)
   if (mouseUpFlag) {
-    robot.setMouseDelay(500);
     robot.dragMouse(x, y);
   } else {
     robot.moveMouse(x, y)
