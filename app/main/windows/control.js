@@ -1,6 +1,6 @@
 const { BrowserWindow }  = require('electron');
 const path = require('path')
-
+const signal = require('../signal')
 let win
 function create() {
   win = new BrowserWindow({
@@ -13,6 +13,11 @@ function create() {
   })
   // win.webContents.openDevTools()
   win.loadFile(path.resolve(__dirname, '../../renderer/pages/control/index.html'))
+  win.on('closed', (e) => {
+    let event = 'closeControl'
+    signal.send('closeControl', {event})
+    win = null
+	})
 }
 function send(channel, ...args) {
   win.webContents.send(channel, ...args)

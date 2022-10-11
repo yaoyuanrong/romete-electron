@@ -1,5 +1,6 @@
-const { ipcMain, desktopCapturer } = require('electron')
-const { send: sendMainWindow } = require('./windows/main')
+const { ipcMain, desktopCapturer,app } = require('electron')
+const { send: sendMainWindow,
+       close: closeMainWindow } = require('./windows/main')
 const { create: createControlWindow, 
           send: sendControlWindow } = require('./windows/control')
 const signal = require('./signal')
@@ -10,7 +11,6 @@ module.exports = function () {
     return code
   })
   ipcMain.handle('sources', async () => {
-    // 先mock。返回一个code
     const sources = await desktopCapturer.getSources({ types: ['screen'] })
     return sources
   })
@@ -32,7 +32,9 @@ module.exports = function () {
 		require('./robot.js')()
     sendMainWindow('control-state-change', data.remote, 2)
   })
-  
+  signal.on('closeControl', () => {
+    closeMainWindow()
+  })
   signal.on('offer', (data) => {
     sendMainWindow('offer', data)
   })
