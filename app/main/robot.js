@@ -35,10 +35,9 @@ function handleClick(data, type) {
 
 function handleMouseDownorUp(data, type) {
   if (type === 'up') {
-    robot.mouseToggle('up')
     mouseUpFlag = false
   } else if (type === 'down') {
-    robot.mouseToggle('down')
+    // robot.mouseToggle('down')
     mouseUpFlag = true
   }
 }
@@ -47,10 +46,10 @@ function handleMouseMove(data) {
   console.log(mouseUpFlag,x,y)
   if (mouseUpFlag) {
     robot.mouseToggle("down");
-    robot.dragMouse(100, 100);
+    robot.dragMouse(952, 284);
     robot.mouseToggle("up");
   } else {
-    robot.moveMouseSmooth(x, y)
+    robot.moveMouse(x, y)
   }
 }
 function handleMousewheel ({x ,y}) {
