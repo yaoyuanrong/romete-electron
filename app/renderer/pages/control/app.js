@@ -17,7 +17,7 @@ function sreenData (e) {
   data.clientY = e.clientY
   data.video = {
     width: video.getBoundingClientRect().width,
-    height: video.getBoundingClientRect().height+20
+    height: video.getBoundingClientRect().height-20
   }
   return data
 }

@@ -17,7 +17,7 @@ ws.on('message', (message) => {
 })
 
 function send(event, data) {
-  console.log('send', {event, data})
+  // console.log('send', {event, data})
   ws.send(JSON.stringify({event, data}))
 }
 
