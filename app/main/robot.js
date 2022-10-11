@@ -35,9 +35,10 @@ function handleClick(data, type) {
 
 function handleMouseDownorUp(data, type) {
   if (type === 'up') {
+    robot.mouseToggle('up')
     mouseUpFlag = false
   } else if (type === 'down') {
-    // robot.mouseToggle('down')
+    robot.mouseToggle('down')
     mouseUpFlag = true
   }
 }
@@ -45,9 +46,8 @@ function handleMouseMove(data) {
   let {x,y} = screenData(data)
   console.log(mouseUpFlag,x,y)
   if (mouseUpFlag) {
-    robot.mouseToggle("down");
-    robot.dragMouse(952, 284);
-    robot.mouseToggle("up");
+    robot.setMouseDelay(500);
+    robot.dragMouse(x, y);
   } else {
     robot.moveMouse(x, y)
   }
