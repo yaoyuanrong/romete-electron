@@ -51,4 +51,7 @@ function size () {
 	}
 	return size
 }
+function hide() {
+	win.hide()
+}
 module.exports = { create, send, show, close, size }

@@ -1,6 +1,7 @@
 const { ipcMain, desktopCapturer,app } = require('electron')
 const { send: sendMainWindow,
-       close: closeMainWindow } = require('./windows/main')
+       close: closeMainWindow,
+       hide: hideMainWindow } = require('./windows/main')
 const { create: createControlWindow, 
           send: sendControlWindow } = require('./windows/control')
 const signal = require('./signal')
@@ -35,6 +36,9 @@ module.exports = function () {
   signal.on('closeControl', () => {
     closeMainWindow()
   })
+  signal.on('hide-be-control', () => {
+    hideMainWindow()
+  })
   signal.on('offer', (data) => {
     sendMainWindow('offer', data)
   })
@@ -44,6 +48,7 @@ module.exports = function () {
   signal.on('puppet-candidate', (data) => {
     console.log('signal puppet-candidate')
     sendControlWindow('puppet-candidate', data)
+    signal.send('hide-be-control')
   })
   signal.on('control-candidate', (data) => {
     sendMainWindow('control-candidate', data)
