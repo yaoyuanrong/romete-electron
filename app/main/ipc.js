@@ -42,6 +42,7 @@ module.exports = function () {
     sendControlWindow('answer', data)
   })
   signal.on('puppet-candidate', (data) => {
+    console.log('signal puppet-candidate')
     sendControlWindow('puppet-candidate', data)
   })
   signal.on('control-candidate', (data) => {
