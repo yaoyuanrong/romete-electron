@@ -6,6 +6,7 @@ peer.on('add-stream', (stream) => {
 let video = document.getElementById('video')
 
 function play(stream) {
+  console.log('流信息', stream)
   video.srcObject = stream
   video.onloadedmetadata = function () {
     video.play()

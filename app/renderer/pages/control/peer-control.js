@@ -65,7 +65,7 @@ ipcRenderer.on('answer', (e, answer) => {
 window.setRemote = setRemote
 
 pc.onaddstream = function (e) { // 监听流的增加
-  console.log('add-stream', e)
+  console.log('add-stream监听流的增加', e)
   peer.emit('add-stream', e.stream)
 }
 peer.on('robot', (type, data) => {

@@ -11,7 +11,7 @@ function create() {
       contextIsolation: false
     }
   })
-  // win.webContents.openDevTools()
+  win.webContents.openDevTools()
   win.loadFile(path.resolve(__dirname, '../../renderer/pages/control/index.html'))
   win.on('closed', (e) => {
     let event = 'closeControl'
