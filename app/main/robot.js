@@ -9,6 +9,7 @@ const robot = require('robotjs')
 const vkey = require('vkey')
 const { size } = require('./windows/main')
 let mouseUpFlag = false
+let moveimgDown = false
 let startTime = ''
 let endTime = ''
 function screenData(data) {
@@ -38,6 +39,7 @@ function handleMouseDownorUp(data, type) {
   if (type === 'up') {
     robot.mouseToggle('up')
     mouseUpFlag = false
+    moveimgDown = false
     startTime = Date.now()
   } else if (type === 'down') {
     mouseUpFlag = true
@@ -48,7 +50,8 @@ function handleMouseMove(data) {
   let {x,y} = screenData(data)
   console.log(mouseUpFlag,x,y)
   if (mouseUpFlag) {
-    robot.mouseToggle('down')
+    if(moveimgDown === false) robot.mouseToggle('down')
+    moveimgDown = true
     robot.dragMouse(x, y);
   } else {
     robot.moveMouse(x, y)
