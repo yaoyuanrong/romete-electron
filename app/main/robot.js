@@ -21,14 +21,16 @@ function screenData(data) {
   let {clientX, clientY, screen, video} = data
   // data {clientX, clientY, screen: {width, height}, video: {width, height}}
   let x = clientX * screen.width / video.width
-  let y = clientY * screen.height / video.height - 20
+  let y = (clientY * screen.height / video.height) + (15 * screen.height / video.height)
   console.log('屏幕数据屏幕数据屏幕数据',data, x, y)
 
   return { x,y }
 }
 function handleClick(data, type) {
   if (type === 'click') {
-    if ((endTime - startTime) < 1000) robot.mouseClick()
+    if ((endTime - startTime) < 1000){ console.log('click') 
+      robot.mouseClick()
+    }
   } else if (type === 'clickRight') {
     robot.mouseClick('right')
   }
@@ -36,12 +38,12 @@ function handleClick(data, type) {
 
 function handleMouseDownorUp(data, type) {
   // let {x,y} = screenData(data)
-  if (type === 'up') {
+  if (type === 'up') { console.log('up')
     robot.mouseToggle('up')
     mouseUpFlag = false
     moveimgDown = false
     startTime = Date.now()
-  } else if (type === 'down') {
+  } else if (type === 'down') { console.log('down')
     mouseUpFlag = true
     endTime = Date.now()
   }
@@ -81,7 +83,6 @@ function handleKey(data) {
 }
 module.exports = function () {
   ipcMain.on('robot', (e, type, data) => {
-    console.log(type,data)
     if(type === 'click') {
       handleClick(data,'click')
     }else if(type === 'key') {
