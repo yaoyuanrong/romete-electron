@@ -21,7 +21,7 @@ function screenData(data) {
   let {clientX, clientY, screen, video} = data
   // data {clientX, clientY, screen: {width, height}, video: {width, height}}
   let x = clientX * screen.width / video.width
-  let y = (clientY * screen.height / video.height) + (15 * screen.height / video.height)
+  let y = clientY * screen.height / (video.height+15)
   console.log('屏幕数据屏幕数据屏幕数据',data, x, y)
 
   return { x,y }
@@ -41,19 +41,14 @@ function handleMouseDownorUp(data, type) {
   if (type === 'up') { console.log('up')
     robot.mouseToggle('up')
     mouseUpFlag = false
-    moveimgDown = false
-    startTime = Date.now()
   } else if (type === 'down') { console.log('down')
+    robot.mouseToggle('down')
     mouseUpFlag = true
-    endTime = Date.now()
   }
 }
 function handleMouseMove(data) {
   let {x,y} = screenData(data)
-  console.log(mouseUpFlag,x,y)
   if (mouseUpFlag) {
-    if(moveimgDown === false) robot.mouseToggle('down')
-    moveimgDown = true
     robot.dragMouse(x, y);
   } else {
     robot.moveMouse(x, y)

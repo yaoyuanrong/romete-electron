@@ -33,10 +33,10 @@ window.onkeydown = function (e) {
   }
   peer.emit('robot', 'key', data)
 }
-window.onclick = function (e) {
-  let data = sreenData(e)
-  peer.emit('robot', 'click',data)
-}
+// window.onclick = function (e) {
+//   let data = sreenData(e)
+//   peer.emit('robot', 'click',data)
+// }
 window.onmousedown = function (e) {
   let data = sreenData(e)
   peer.emit('robot', 'down',data)
