@@ -25,7 +25,7 @@ function create () {
 		win.show()
 		
 	})
-	win.webContents.openDevTools()
+	// win.webContents.openDevTools()
 	if(isDev){
 		win.loadURL('http://localhost:9000')
 	} else {
@@ -46,12 +46,12 @@ function close() {
 function size () {
 	let { workAreaSize,scaleFactor } = screen.getPrimaryDisplay()
 	let size = {
-		width: workAreaSize.width * scaleFactor,
-		height:workAreaSize.height * scaleFactor
+		width: process.platform == 'darwin' ? workAreaSize.width : workAreaSize.width * scaleFactor,
+		height: process.platform == 'darwin' ? workAreaSize.height : workAreaSize.height * scaleFactor
 	}
 	return size
 }
 function hide() {
 	win.hide()
 }
-module.exports = { create, send, show, close, size }
+module.exports = { create, send, show, close, size,hide }

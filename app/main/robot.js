@@ -21,7 +21,7 @@ function screenData(data) {
   let {clientX, clientY, screen, video} = data
   // data {clientX, clientY, screen: {width, height}, video: {width, height}}
   let x = clientX * screen.width / video.width
-  let y = clientY * screen.height / video.height
+  let y = clientY * screen.height / video.height - 20
   console.log('屏幕数据屏幕数据屏幕数据',data, x, y)
 
   return { x,y }
