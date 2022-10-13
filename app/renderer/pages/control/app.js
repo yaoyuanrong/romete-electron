@@ -60,3 +60,6 @@ window.onmousewheel = function (e) {
     y:e.deltaY
   })
 }
+window.ondblclick = function (e) {
+  peer.emit('robot', 'dbclick')
+}

@@ -21,21 +21,18 @@ function screenData(data) {
   let {clientX, clientY, screen, video} = data
   // data {clientX, clientY, screen: {width, height}, video: {width, height}}
   let x = clientX * screen.width / video.width
-  let y = clientY * screen.height / (video.height+15)
+  let y = clientY * screen.height / (video.height - 25)
   console.log('屏幕数据屏幕数据屏幕数据',data, x, y)
 
   return { x,y }
 }
 function handleClick(data, type) {
-  if (type === 'click') {
-    if ((endTime - startTime) < 1000){ console.log('click') 
-      robot.mouseClick()
-    }
+  if (type === 'dbclick') {
+      robot.mouseClick('left', true)
   } else if (type === 'clickRight') {
     robot.mouseClick('right')
   }
 }
-
 function handleMouseDownorUp(data, type) {
   // let {x,y} = screenData(data)
   if (type === 'up') { console.log('up')
@@ -66,9 +63,9 @@ function handleKey(data) {
     if(data.alt)modifiers.push('alt')
     if(data.ctrl)modifiers.push('ctrl')
     let key = vkey[data.keyCode].toLowerCase()
-    if(key[0] !== '<') { // <shift>
-      robot.keyTap(key, modifiers)
-    }
+    // if(key[0] !== '<') { // <shift>
+    //   robot.keyTap(key, modifiers)
+    // }
     let RexStr = /\<|\>|\"|\'|\&/g
     robot.keyTap(key.replace(RexStr,''));
   } catch (err) {
@@ -79,7 +76,7 @@ function handleKey(data) {
 module.exports = function () {
   ipcMain.on('robot', (e, type, data) => {
     if(type === 'click') {
-      handleClick(data,'click')
+      handleClick(data,'dbclick')
     }else if(type === 'key') {
       handleKey(data)
     }else if (type === 'mouseMove') {
