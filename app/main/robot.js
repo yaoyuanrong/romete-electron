@@ -28,7 +28,7 @@ function screenData(data) {
 }
 function handleClick(data, type) {
   if (type === 'dbclick') {
-      robot.mouseClick('left', true)
+    robot.mouseClick('left', true)
   } else if (type === 'clickRight') {
     robot.mouseClick('right')
   }
@@ -75,7 +75,7 @@ function handleKey(data) {
 }
 module.exports = function () {
   ipcMain.on('robot', (e, type, data) => {
-    if(type === 'click') {
+    if(type === 'dbclick') {
       handleClick(data,'dbclick')
     }else if(type === 'key') {
       handleKey(data)

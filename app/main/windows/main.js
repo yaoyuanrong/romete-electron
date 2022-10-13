@@ -31,6 +31,7 @@ function create () {
 	} else {
 		win.loadFile(path.resolve(__dirname, '../../renderer/pages/main/index.html'))
 	}
+
 }
 function send(channel, ...args) {
   win.webContents.send(channel, ...args)
