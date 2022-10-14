@@ -14,6 +14,7 @@ function create() {
   // win.webContents.openDevTools()
   win.loadFile(path.resolve(__dirname, '../../renderer/pages/control/index.html'))
   win.on('closed', (e) => {
+    console.log('closed','close-control-window')
     signal.send('close-control-window', {})
     win = null
 	})

@@ -55,9 +55,8 @@ module.exports = function () {
   
   // 控制端关闭按钮 触发关闭主窗口
   signal.on('close-control-window', () => {
-    console.log('close-control-window')
     sendMainWindow('control-quit-fresh',{})
-		closeControlWindow()
+		// closeControlWindow()
   })
   signal.on('control-quit-fresh', () => {
     sendMainWindow('control-quit-fresh',{})
