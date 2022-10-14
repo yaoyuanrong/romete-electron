@@ -3,7 +3,8 @@ const { send: sendMainWindow,
        close: closeMainWindow,
        hide: hideMainWindow } = require('./windows/main')
 const { create: createControlWindow, 
-          send: sendControlWindow } = require('./windows/control')
+          send: sendControlWindow,
+        close: closeControlWindow } = require('./windows/control')
 const signal = require('./signal')
 module.exports = function () {
   ipcMain.handle('login', async () => {
@@ -55,5 +56,6 @@ module.exports = function () {
   })
   signal.on('control-quit-fresh', (data) => {
     sendMainWindow('control-quit-fresh',{})
+		closeControlWindow()
   })
 }
