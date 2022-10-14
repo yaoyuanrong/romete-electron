@@ -23,6 +23,7 @@ function send(channel, ...args) {
   win.webContents.send(channel, ...args)
 }
 function close() {
+  console.log('controlClose')
 	win.close()
 }
 module.exports = { create, send, close }
