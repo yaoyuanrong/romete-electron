@@ -34,9 +34,7 @@ module.exports = function () {
 		require('./robot.js')()
     sendMainWindow('control-state-change', data.remote, 2)
   })
-  signal.on('closeControl', () => {
-    closeMainWindow()
-  })
+ 
   signal.on('hide-be-control', () => {
     hideMainWindow()
   })
@@ -54,7 +52,14 @@ module.exports = function () {
   signal.on('control-candidate', (data) => {
     sendMainWindow('control-candidate', data)
   })
-  signal.on('control-quit-fresh', (data) => {
+  
+  // 控制端关闭按钮 触发关闭主窗口
+  signal.on('close-control-window', () => {
+    console.log('close-control-window')
+    sendMainWindow('control-quit-fresh',{})
+		closeControlWindow()
+  })
+  signal.on('control-quit-fresh', () => {
     sendMainWindow('control-quit-fresh',{})
 		closeControlWindow()
   })
