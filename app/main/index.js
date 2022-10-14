@@ -2,7 +2,8 @@ const { app, ipcRenderer } = require('electron')
 const handleIPC = require('./ipc')
 const { create: createMainWindow, 
 	        show: showMainWindow,
-				 close: closeMainWindow } = require('./windows/main')
+				 close: closeMainWindow,
+				send: sendMainWindow } = require('./windows/main')
 const isDev = require('electron-is-dev')
 const { create: createControlWindow } = require('./windows/control')
 // 禁止多开
@@ -21,7 +22,7 @@ const gotTheLock = app.requestSingleInstanceLock()
 			require('./trayAndMenu/index.js')
 		})
 		app.on('before-quit', () => {
-			ipcRenderer.send('control-quit-fresh')
+			sendMainWindow('control-quit-fresh')
 			closeMainWindow()
 		})
 		app.on('activate', () => {

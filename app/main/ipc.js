@@ -15,9 +15,7 @@ module.exports = function () {
     const sources = await desktopCapturer.getSources({ types: ['screen'] })
     return sources
   })
-  ipcMain.on('control-quit-fresh',async (e) => {
-    send('control-quit-fresh')
-  })
+
   ipcMain.on('control', async (e, remote) => {
     signal.send('control', {remote})
     // 与服务端的交互
