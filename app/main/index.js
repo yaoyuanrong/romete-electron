@@ -25,8 +25,6 @@ const gotTheLock = app.requestSingleInstanceLock()
 		app.on('before-quit', () => {
 			signal.send('control-quit-fresh')
 			console.log('sendMainWindow','control-quit-fresh')
-		})
-		app.on('quit', () => {
 			closeMainWindow()
 		})
 		app.on('activate', () => {
