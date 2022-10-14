@@ -5,6 +5,7 @@ const { create: createMainWindow,
 				 close: closeMainWindow,
 				send: sendMainWindow } = require('./windows/main')
 const isDev = require('electron-is-dev')
+const signal = require('./signal')
 const { create: createControlWindow } = require('./windows/control')
 // 禁止多开
 const gotTheLock = app.requestSingleInstanceLock()
@@ -22,7 +23,8 @@ const gotTheLock = app.requestSingleInstanceLock()
 			require('./trayAndMenu/index.js')
 		})
 		app.on('before-quit', () => {
-			sendMainWindow('control-quit-fresh')
+			signal.send('control-quit-fresh')
+			console.log('sendMainWindow','control-quit-fresh')
 			closeMainWindow()
 		})
 		app.on('activate', () => {
