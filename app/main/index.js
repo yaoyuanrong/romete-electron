@@ -23,7 +23,7 @@ const gotTheLock = app.requestSingleInstanceLock()
 			require('./trayAndMenu/index.js')
 		})
 		app.on('before-quit', () => {
-			signal.send('control-quit-fresh')
+			// signal.send('control-quit-fresh')
 			closeMainWindow()
 		})
 		app.on('activate', () => {

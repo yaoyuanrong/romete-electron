@@ -16,7 +16,7 @@ function create() {
   win.on('closed', (e) => {
     console.log('closed','close-control-window')
     signal.send('close-control-window', {})
-    win = null
+    // win = null
 	})
 }
 function send(channel, ...args) {
@@ -26,4 +26,7 @@ function close() {
   console.log('controlClose')
 	win.close()
 }
-module.exports = { create, send, close }
+function reload() {
+  win.reload()
+}
+module.exports = { create, send, close, reload }

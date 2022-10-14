@@ -5,7 +5,8 @@ const { send: sendMainWindow,
       reload: reloadMainWindow } = require('./windows/main')
 const { create: createControlWindow, 
           send: sendControlWindow,
-        close: closeControlWindow } = require('./windows/control')
+        close: closeControlWindow,
+        reload: reloadControlWindow } = require('./windows/control')
 const signal = require('./signal')
 module.exports = function () {
   ipcMain.handle('login', async () => {
@@ -56,9 +57,10 @@ module.exports = function () {
   
   // 控制端关闭按钮 触发关闭主窗口
   signal.on('close-control-window', () => {
-    // sendMainWindow('control-quit-fresh',{})
+    sendMainWindow('control-quit-fresh',{})
 		// closeControlWindow()
     reloadMainWindow()
+    // reloadControlWindow()
   })
   signal.on('control-quit-fresh', () => {
     sendMainWindow('control-quit-fresh',{})
