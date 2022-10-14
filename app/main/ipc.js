@@ -59,7 +59,7 @@ module.exports = function () {
   signal.on('close-control-window', () => {
     sendMainWindow('control-quit-fresh',{})
 		// closeControlWindow()
-    reloadMainWindow()
+    // reloadMainWindow()
     // reloadControlWindow()
   })
   signal.on('control-quit-fresh', () => {
