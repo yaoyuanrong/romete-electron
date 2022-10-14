@@ -25,7 +25,7 @@ function create () {
 		win.show()
 		
 	})
-	// win.webContents.openDevTools()
+	win.webContents.openDevTools()
 	if(isDev){
 		win.loadURL('http://localhost:9000')
 	} else {
@@ -55,4 +55,7 @@ function size () {
 function hide() {
 	win.hide()
 }
-module.exports = { create, send, show, close, size,hide }
+function reload() {
+	win.reload()
+}
+module.exports = { create, send, show, close, size, hide, reload }

@@ -1,7 +1,8 @@
 const { ipcMain, desktopCapturer,app } = require('electron')
 const { send: sendMainWindow,
        close: closeMainWindow,
-       hide: hideMainWindow } = require('./windows/main')
+       hide: hideMainWindow,
+      reload: reloadMainWindow } = require('./windows/main')
 const { create: createControlWindow, 
           send: sendControlWindow,
         close: closeControlWindow } = require('./windows/control')
@@ -55,8 +56,9 @@ module.exports = function () {
   
   // 控制端关闭按钮 触发关闭主窗口
   signal.on('close-control-window', () => {
-    sendMainWindow('control-quit-fresh',{})
+    // sendMainWindow('control-quit-fresh',{})
 		// closeControlWindow()
+    reloadMainWindow()
   })
   signal.on('control-quit-fresh', () => {
     sendMainWindow('control-quit-fresh',{})
