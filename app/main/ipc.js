@@ -54,6 +54,6 @@ module.exports = function () {
     sendMainWindow('control-candidate', data)
   })
   signal.on('control-quit-fresh', (data) => {
-    sendMainWindow('control-quit-fresh')
+    sendMainWindow('control-quit-fresh',{})
   })
 }
