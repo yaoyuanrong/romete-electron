@@ -1,4 +1,4 @@
-const { app, ipcRenderer } = require('electron')
+const { app } = require('electron')
 const handleIPC = require('./ipc')
 const { create: createMainWindow, 
 	        show: showMainWindow,
@@ -17,13 +17,12 @@ const gotTheLock = app.requestSingleInstanceLock()
 		})
 		app.on('ready',() => {
 			createMainWindow()
-			// createControlWindow()
 			handleIPC()
-			// require('./robot.js')()
 			require('./trayAndMenu/index.js')
 		})
 		app.on('before-quit', () => {
-			// signal.send('control-quit-fresh')
+			signal.send('control-quit-fresh')
+			
 			closeMainWindow()
 		})
 		app.on('activate', () => {

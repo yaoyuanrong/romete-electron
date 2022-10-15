@@ -1,5 +1,5 @@
 const { BrowserWindow }  = require('electron');
-const path = require('path')
+const path = require('path');
 const signal = require('../signal')
 let win
 function create() {
@@ -16,7 +16,6 @@ function create() {
   win.on('close', (e) => {
     console.log('closed','close-control-window')
     signal.send('close-control-window', {})
-    e.preventDefault()
     // win = null
 	})
 }

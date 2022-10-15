@@ -1,8 +1,10 @@
 const { app,BrowserWindow,screen } = require('electron')
 const path = require('path')
 const isDev = require('electron-is-dev')
+const ipc = require('../ipc')
 let win
 let willQuitApp = false
+let directCloseAll = false
 function create () {
   win = new BrowserWindow({
 		width:600,
@@ -34,15 +36,19 @@ function create () {
 
 }
 function send(channel, ...args) {
-  win.webContents.send(channel, ...args)
+	if (win) {
+		win.webContents.send(channel, ...args)
+	}
 }
 function show() {
 	if (win.isMinimized()) win.restore()
 	win.show()
 }
 function close() {
-	willQuitApp = true
-	win.close()
+	if(win) {
+		willQuitApp = true
+		win.close()
+	}
 }
 function size () {
 	let { workAreaSize,scaleFactor } = screen.getPrimaryDisplay()
@@ -55,7 +61,10 @@ function size () {
 function hide() {
 	win.hide()
 }
+
 function reload() {
-	win.reload()
+	if (willQuitApp) return
+	app.relaunch()
+	app.exit(0);
 }
 module.exports = { create, send, show, close, size, hide, reload }
