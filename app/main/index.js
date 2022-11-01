@@ -7,6 +7,7 @@ const { create: createMainWindow,
 const isDev = require('electron-is-dev')
 const signal = require('./signal')
 const { create: createControlWindow} = require('./windows/control')
+
 // 禁止多开
 const gotTheLock = app.requestSingleInstanceLock()
 	if(!gotTheLock) {
@@ -20,6 +21,7 @@ const gotTheLock = app.requestSingleInstanceLock()
 			handleIPC()
 			require('./trayAndMenu/index.js')
 		})
+		
 		app.on('before-quit', () => {
 			signal.send('control-quit-fresh')
 			

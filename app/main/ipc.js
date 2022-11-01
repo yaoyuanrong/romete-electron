@@ -15,6 +15,7 @@ module.exports = function () {
     return code
   })
   ipcMain.handle('sources', async () => {
+    console.log('desktopCapturer',desktopCapturer)
     const sources = await desktopCapturer.getSources({ types: ['screen'] })
     return sources
   })
@@ -61,6 +62,6 @@ module.exports = function () {
   })
   signal.on('control-quit-fresh', () => {
     sendMainWindow('control-quit-fresh',{})
-		// closeControlWindow()
+		closeControlWindow()
   })
 }

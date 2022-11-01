@@ -1,4 +1,4 @@
-const { BrowserWindow }  = require('electron');
+const { BrowserWindow, app }  = require('electron');
 const path = require('path');
 const signal = require('../signal')
 let win
@@ -18,7 +18,11 @@ function create() {
     signal.send('close-control-window', {})
     // win = null
 	})
+  app.whenReady().then(async () => {
+    require('../permissions.js')
+  })
 }
+
 function send(channel, ...args) {
   win.webContents.send(channel, ...args)
 }
