@@ -63,11 +63,8 @@ function handleKey(data) {
     if(data.alt)modifiers.push('alt')
     if(data.ctrl)modifiers.push('ctrl')
     let key = vkey[data.keyCode].toLowerCase()
-    // if(key[0] !== '<') { // <shift>
-    //   robot.keyTap(key, modifiers)
-    // }
     let RexStr = /\<|\>|\"|\'|\&/g
-    robot.keyTap(key.replace(RexStr,''));
+    robot.keyTap(key.replace(RexStr,modifiers));
   } catch (err) {
     console.log(err)
   }

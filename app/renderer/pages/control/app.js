@@ -26,9 +26,9 @@ window.onkeydown = function (e) {
   console.log(e)
   let data = {
     keyCode: e.keyCode,
-    shift: e.shift,
+    shift: e.shiftKey,
     meta: e.meta,
-    control: e.control,
+    control: e.ctrlKey,
     alt: e.altKey
   }
   peer.emit('robot', 'key', data)
