@@ -15,6 +15,7 @@ function create () {
 			contextIsolation:false
 		},
 		show: false,
+		titleBarStyle: 'hidden'
 	})
 	win.on('close', (e) => {
 		if(willQuitApp) {

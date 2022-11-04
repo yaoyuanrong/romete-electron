@@ -9,9 +9,6 @@ const robot = require('robotjs')
 const vkey = require('vkey')
 const { size } = require('./windows/main')
 let mouseUpFlag = false
-let moveimgDown = false
-let startTime = ''
-let endTime = ''
 function screenData(data) {
   console.log('localScreen', size())
   data.screen = {
@@ -61,7 +58,7 @@ function handleKey(data) {
     if(data.meta)modifiers.push('meta')
     if(data.shift)modifiers.push('shift')
     if(data.alt)modifiers.push('alt')
-    if(data.ctrl)modifiers.push('ctrl')
+    if(data.control)modifiers.push('control')
     let key = vkey[data.keyCode].toLowerCase()
     let RexStr = /\<|\>|\"|\'|\&/g
     robot.keyTap(key.replace(RexStr,modifiers));
