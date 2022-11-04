@@ -1,4 +1,5 @@
 const { app,BrowserWindow,screen } = require('electron')
+
 const path = require('path')
 const isDev = require('electron-is-dev')
 const ipc = require('../ipc')
@@ -25,7 +26,6 @@ function create () {
 	})
 	win.on('ready-to-show', () => {
 		win.show()
-		
 	})
 	win.webContents.openDevTools()
 	if(isDev){
