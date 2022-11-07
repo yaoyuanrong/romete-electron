@@ -10,7 +10,6 @@ const vkey = require('vkey')
 const { size } = require('./windows/main')
 let mouseUpFlag = false
 function screenData(data) {
-  console.log('localScreen', size())
   data.screen = {
     width: size().width,
     height: size().height,
@@ -19,7 +18,6 @@ function screenData(data) {
   // data {clientX, clientY, screen: {width, height}, video: {width, height}}
   let x = clientX * screen.width / video.width
   let y = clientY * screen.height / (video.height - 25)
-  console.log('屏幕数据屏幕数据屏幕数据',data, x, y)
 
   return { x,y }
 }
@@ -69,6 +67,7 @@ function handleKey(data) {
 }
 module.exports = function () {
   ipcMain.on('robot', (e, type, data) => {
+    console.log(type)
     if(type === 'dbclick') {
       handleClick(data,'dbclick')
     }else if(type === 'key') {

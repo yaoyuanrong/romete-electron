@@ -5,7 +5,7 @@ const { ipcRenderer } = require('electron')
 const pc = new window.RTCPeerConnection({}) // 创建RTC
 
 //在链接中新增数据通道 reliable是否必须可达的
-const dc = pc.createDataChannel('robotchannel', {reliable: false})
+const dc = pc.createDataChannel('robotchannel', {reliable: true})
 dc.onopen = function() {
   peer.on('robot', (type, data) => {
     console.log('open开启')
@@ -68,13 +68,5 @@ pc.onaddstream = function (e) { // 监听流的增加
   console.log('add-stream监听流的增加', e)
   peer.emit('add-stream', e.stream)
 }
-peer.on('robot', (type, data) => {
-  // if(type == 'mouse' || type == 'mouseMove') {
-  //   data.screen = { 
-  //     width: window.screen.width * window.devicePixelRatio,
-  //     height: window.screen.height* window.devicePixelRatio,
-  //   }
-  // }
-  ipcRenderer.send('robot', type, data)
-})
+
 module.exports = peer
