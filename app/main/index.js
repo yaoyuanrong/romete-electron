@@ -6,7 +6,6 @@ const { create: createMainWindow,
 				send: sendMainWindow } = require('./windows/main')
 const isDev = require('electron-is-dev')
 const signal = require('./signal')
-const { create: createControlWindow} = require('./windows/control')
 
 // 禁止多开
 const gotTheLock = app.requestSingleInstanceLock()

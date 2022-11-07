@@ -38,12 +38,13 @@ window.onclick = function (e) {
   peer.emit('robot', 'click',data)
 }
 window.onmousedown = function (e) {
-  console.log('h5onmousedown')
+  console.log('onmousedown')
   let data = sreenData(e)
   peer.emit('robot', 'down',data)
 } 
 window.onmouseup= function (e) {
-  console.log('h5onmousedown')
+  console.log('onmouseup')
+
   let data = sreenData(e)
   peer.emit('robot', 'up',data)
 } 
