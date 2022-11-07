@@ -14,7 +14,7 @@ function create () {
 			nodeIntegration:true,
 			contextIsolation:false
 		},
-		show: false,
+		show: false
 	})
 	win.on('close', (e) => {
 		if(willQuitApp) {
