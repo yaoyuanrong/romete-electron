@@ -1,12 +1,10 @@
-const { ipcMain, desktopCapturer,app } = require('electron')
+const { ipcMain, desktopCapturer,clipboard ,nativeImage} = require('electron')
 const { send: sendMainWindow,
-       close: closeMainWindow,
        hide: hideMainWindow,
       reload: reloadMainWindow } = require('./windows/main')
 const { create: createControlWindow, 
           send: sendControlWindow,
-        close: closeControlWindow,
-        reload: reloadControlWindow } = require('./windows/control')
+        close: closeControlWindow } = require('./windows/control')
 const signal = require('./signal')
 module.exports = function () {
   ipcMain.handle('login', async () => {
@@ -36,6 +34,17 @@ module.exports = function () {
   signal.on('be-controlled', (data) => {
 		require('./robot.js')()
     sendMainWindow('control-state-change', data.remote, 2)
+    signal.on('on-clipboard', (data) => { // 被控制端将对方剪贴板的内容保存在自己剪切板
+      console.log('clipboard', data)
+      switch (data.type) {
+        case 'text': 
+          clipboard.writeText(data.content)
+          break;
+        case 'image':
+          clipboard.writeImage(nativeImage.createFromDataURL(data.content))
+          break;
+      }
+    })
   })
  
   signal.on('hide-be-control', () => {

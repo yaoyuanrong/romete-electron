@@ -19,6 +19,7 @@ const gotTheLock = app.requestSingleInstanceLock()
 			createMainWindow()
 			handleIPC()
 			require('./trayAndMenu/index.js')
+			
 		})
 		
 		app.on('before-quit', () => {
@@ -28,6 +29,7 @@ const gotTheLock = app.requestSingleInstanceLock()
 		})
 		app.on('activate', () => {
 			showMainWindow()
+			
 		})
 		app.on('will-finish-launching', () => {
 			if(!isDev) {

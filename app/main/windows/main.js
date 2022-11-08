@@ -1,11 +1,12 @@
-const { app,BrowserWindow,screen } = require('electron')
+const { app, 
+				BrowserWindow, 
+				screen } = require('electron')
 
 const path = require('path')
 const isDev = require('electron-is-dev')
-const ipc = require('../ipc')
+
 let win
 let willQuitApp = false
-let directCloseAll = false
 function create () {
   win = new BrowserWindow({
 		width:600,
@@ -15,7 +16,6 @@ function create () {
 			contextIsolation:false
 		},
 		show: false,
-		titleBarStyle: 'hidden'
 	})
 	win.on('close', (e) => {
 		if(willQuitApp) {
@@ -34,7 +34,7 @@ function create () {
 	} else {
 		win.loadFile(path.resolve(__dirname, '../../renderer/pages/main/index.html'))
 	}
-
+	
 }
 function send(channel, ...args) {
 	if (win) {
