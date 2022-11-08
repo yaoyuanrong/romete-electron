@@ -33,10 +33,10 @@ window.onkeydown = function (e) {
   }
   peer.emit('robot', 'key', data)
 }
-// window.onclick = function (e) {
-//   let data = sreenData(e)
-//   peer.emit('robot', 'click',data)
-// }
+window.onclick = function (e) {
+  let data = sreenData(e)
+  peer.emit('robot', 'click',data)
+}
 window.onmousedown = function (e) {
   console.log('onmousedown')
   let data = sreenData(e)
@@ -62,7 +62,4 @@ window.onmousewheel = function (e) {
     x:e.deltaX,
     y:e.deltaY
   })
-}
-window.ondblclick = function (e) {
-  peer.emit('robot', 'dbclick')
 }
