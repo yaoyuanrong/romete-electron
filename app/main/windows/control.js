@@ -29,7 +29,7 @@ function create() {
       const RTF = clipboard.readRTF('clipboard') // 获取RTF类型文件
 
       if (!img.isEmpty()) {
-        signal.send('send-clipboard', {content: img.toPNG(), type: 'image'})
+        signal.send('send-clipboard', {content: img.toBitmap(), type: 'image'})
         return 
       }
       if (text != '') {
