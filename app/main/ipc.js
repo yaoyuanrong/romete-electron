@@ -40,8 +40,10 @@ module.exports = function () {
         case 'image':
           console.log('image剪切板',nativeImage.createFromDataURL(clipboardData.content))
           clipboard.writeImage(nativeImage.createFromDataURL(clipboardData.content))
+          break;
         case 'text': 
           clipboard.writeText(clipboardData.content)
+          break;
       }
     })
   })
