@@ -39,10 +39,8 @@ module.exports = function () {
       switch (data.type) {
         case 'text': 
           clipboard.writeText(data.content)
-          break;
         case 'image':
           clipboard.writeImage(nativeImage.createFromDataURL(data.content))
-          break;
       }
     })
   })
