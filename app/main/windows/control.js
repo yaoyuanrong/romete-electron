@@ -21,13 +21,15 @@ function create() {
     signal.send('close-control-window', {})
     // win = null
 	})
+
   win.on('focus',() => {
     globalShortcut.register("CommandOrControl+V", () => {
       const text = clipboard.readText('clipboard') // 获取text
       const img = clipboard.readImage('clipboard') // 获取图片
       const RTF = clipboard.readRTF('clipboard') // 获取RTF类型文件
+
       if (!img.isEmpty()) {
-        signal.send('send-clipboard', {content: img.toDataURL(), type: 'image'})
+        signal.send('send-clipboard', {content: img.toPNG(), type: 'image'})
         return 
       }
       if (text != '') {

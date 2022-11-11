@@ -38,11 +38,10 @@ module.exports = function () {
       console.log('clipboard', data)
       switch (data.type) {
         case 'image':
+          console.log('image剪切板',nativeImage.createFromDataURL(data.content))
           clipboard.writeImage(nativeImage.createFromDataURL(data.content))
-          break;
         case 'text': 
           clipboard.writeText(data.content)
-          break;
       }
     })
   })
