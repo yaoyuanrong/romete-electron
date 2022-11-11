@@ -4,7 +4,7 @@
  *         -无服务端依赖，p2p传输
  *         -基于sctp（传输层，有着tcp、udp的优点）
  */
-const { ipcMain, clipboard } = require('electron')
+const { ipcMain } = require('electron')
 const robot = require('robotjs')
 const vkey = require('vkey')
 const { size } = require('./windows/main')
@@ -59,10 +59,10 @@ function handleKey(data) {
     if(data.control)modifiers.push('control')
     let key = vkey[data.keyCode].toLowerCase()
     let RexStr = /\<|\>|\"|\'|\&/g
-    let codeKey = key.replace(RexStr)
-    robot.keyTap(codeKey,modifiers);
+    robot.keyTap(key.replace(RexStr),modifiers);
+    console.log(RexStr,modifiers)
   } catch (err) {
-    // console.log(err)
+    console.log(err)
   }
 
 }
