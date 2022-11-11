@@ -67,7 +67,6 @@ function handleKey(data) {
 }
 module.exports = function () {
   ipcMain.on('robot', (e, type, data) => {
-    console.log(type)
     if(type === 'dbclick') {
       handleClick(data,'dbclick')
     }else if(type === 'key') {

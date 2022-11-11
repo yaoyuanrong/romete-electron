@@ -1,6 +1,6 @@
 const { app, 
 				BrowserWindow, 
-				screen } = require('electron')
+				screen} = require('electron')
 
 const path = require('path')
 const isDev = require('electron-is-dev')

@@ -35,11 +35,11 @@ module.exports = function () {
 		require('./robot.js')()
     sendMainWindow('control-state-change', data.remote, 2)
     signal.on('on-clipboard', (clipboardData) => { // 被控制端将对方剪贴板的内容保存在自己剪切板
-      console.log('clipboard', clipboardData)
+      console.log('clipboardon-clipboard', clipboardData)
       switch (clipboardData.type) {
         case 'image':
-          console.log('image剪切板',nativeImage.createFromDataURL(clipboardData.content))
-          clipboard.writeImage(nativeImage.createFromDataURL(clipboardData.content))
+          console.log('image剪切板',nativeImage.createFromBuffer(clipboardData.content))
+          clipboard.writeImage(nativeImage.createFromBuffer(clipboardData.content))
           break;
         case 'text': 
           clipboard.writeText(clipboardData.content)
