@@ -59,8 +59,7 @@ function handleKey(data) {
     if(data.control)modifiers.push('control')
     let key = vkey[data.keyCode].toLowerCase()
     let RexStr = /\<|\>|\"|\'|\&/g
-    robot.keyTap(key.replace(RexStr),modifiers);
-    console.log(RexStr,modifiers)
+    robot.keyTap(key.replace(RexStr,''),modifiers);
   } catch (err) {
     console.log(err)
   }

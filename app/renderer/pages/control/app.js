@@ -26,6 +26,7 @@ window.onkeydown = function (e) {
   console.log(e)
   let data = {
     keyCode: e.keyCode,
+    key:e.key,
     shift: e.shiftKey,
     meta: e.meta,
     control: e.ctrlKey,
@@ -43,7 +44,7 @@ window.onmousedown = function (e) {
   peer.emit('robot', 'down',data)
 } 
 window.onmouseup= function (e) {
-  console.log('onmouseup')
+  console.log('onmousedown')
 
   let data = sreenData(e)
   peer.emit('robot', 'up',data)
@@ -62,4 +63,7 @@ window.onmousewheel = function (e) {
     x:e.deltaX,
     y:e.deltaY
   })
+}
+window.ondblclick = function (e) {
+  peer.emit('robot', 'dbclick')
 }
