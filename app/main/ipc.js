@@ -37,10 +37,12 @@ module.exports = function () {
     signal.on('on-clipboard', (data) => { // 被控制端将对方剪贴板的内容保存在自己剪切板
       console.log('clipboard', data)
       switch (data.type) {
-        case 'text': 
-          clipboard.writeText(data.content)
         case 'image':
           clipboard.writeImage(nativeImage.createFromDataURL(data.content))
+          break;
+        case 'text': 
+          clipboard.writeText(data.content)
+          break;
       }
     })
   })
