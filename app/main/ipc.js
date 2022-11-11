@@ -34,14 +34,14 @@ module.exports = function () {
   signal.on('be-controlled', (data) => {
 		require('./robot.js')()
     sendMainWindow('control-state-change', data.remote, 2)
-    signal.on('on-clipboard', (data) => { // 被控制端将对方剪贴板的内容保存在自己剪切板
-      console.log('clipboard', data)
-      switch (data.type) {
+    signal.on('on-clipboard', (clipboardData) => { // 被控制端将对方剪贴板的内容保存在自己剪切板
+      console.log('clipboard', clipboardData)
+      switch (clipboardData.type) {
         case 'image':
-          console.log('image剪切板',nativeImage.createFromDataURL(data.content))
-          clipboard.writeImage(nativeImage.createFromDataURL(data.content))
+          console.log('image剪切板',nativeImage.createFromDataURL(clipboardData.content))
+          clipboard.writeImage(nativeImage.createFromDataURL(clipboardData.content))
         case 'text': 
-          clipboard.writeText(data.content)
+          clipboard.writeText(clipboardData.content)
       }
     })
   })
