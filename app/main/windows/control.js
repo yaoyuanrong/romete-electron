@@ -19,7 +19,7 @@ function create() {
   win.on('close', (e) => {
     console.log('closed','close-control-window')
     signal.send('close-control-window', {})
-    win = null
+    // win = null
 	})
   win.on('focus',() => {
     globalShortcut.register("CommandOrControl+V", () => {

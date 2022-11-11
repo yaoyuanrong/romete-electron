@@ -9,6 +9,7 @@ const dc = pc.createDataChannel('robotchannel', {reliable: true})
 dc.onopen = function() {
   peer.on('robot', (type, data) => {
     console.log('open开启')
+    dc.send(JSON.stringify({type, data}))
   })
 }
 dc.onmessage = function (e) {
