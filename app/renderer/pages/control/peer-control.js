@@ -1,8 +1,19 @@
 const EventEmitter = require('events')
 const peer = new EventEmitter()
 const { ipcRenderer } = require('electron')
-
-const pc = new window.RTCPeerConnection({}) // 创建RTC
+let serverConfig = {
+  "iceServers": [
+    {
+      "urls": ["stun:123.57.14.193:3478"]
+    },
+    { 
+      "urls": ["turn:123.57.14.193:3478"], 
+      "username": "yaoyuanrong", 
+      "credential": "a962544785" 
+    }
+  ]
+};
+const pc = new window.RTCPeerConnection(serverConfig) // 创建RTC
 
 //在链接中新增数据通道 reliable是否必须可达的
 const dc = pc.createDataChannel('robotchannel', {reliable: true})
