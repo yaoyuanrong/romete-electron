@@ -1,16 +1,18 @@
 const EventEmitter = require('events')
 const peer = new EventEmitter()
 const { ipcRenderer } = require('electron')
+
 let serverConfig = {
   "iceServers": [
-    {
-      "urls": ["stun:123.57.14.193:3478"]
-    },
-    { 
-      "urls": ["turn:123.57.14.193:3478"], 
-      "username": "yaoyuanrong", 
-      "credential": "a962544785" 
-    }
+    {"url": "stun:stun.l.google.com:19302"}
+    // {
+    //   "urls": ["stun:123.57.14.193:3478"]
+    // },
+    // { 
+    //   "urls": ["turn:123.57.14.193:3478"], 
+    //   "username": "yaoyuanrong", 
+    //   "credential": "a962544785" 
+    // }
   ]
 };
 const pc = new window.RTCPeerConnection(serverConfig) // 创建RTC
