@@ -1,18 +1,24 @@
 const EventEmitter = require('events')
 const peer = new EventEmitter()
 const { ipcRenderer } = require('electron')
-
 let serverConfig = {
   "iceServers": [
-    {"url": "stun:stun.l.google.com:19302"}
     // {
-    //   "urls": ["stun:123.57.14.193:3478"]
+    //   urls: "stun:openrelay.metered.ca:80",
     // },
-    // { 
-    //   "urls": ["turn:123.57.14.193:3478"], 
-    //   "username": "yaoyuanrong", 
-    //   "credential": "a962544785" 
+    // {
+    //   urls: "turn:openrelay.metered.ca:80",
+    //   username: "openrelayproject",
+    //   credential: "openrelayproject",
     // }
+    { 
+      "urls": "turn:123.57.14.193:3478", 
+      "username": "yaoyuanrong", 
+      "credential": "a962544785" 
+    },
+    {
+      "urls": "stun:123.57.14.193:3478",
+    }
   ]
 };
 const pc = new window.RTCPeerConnection(serverConfig) // 创建RTC
