@@ -12,12 +12,9 @@ let serverConfig = {
     //   credential: "openrelayproject",
     // }
     { 
-      "urls": "turn:123.57.14.193:3478", 
+      "urls": "turn:www.yaoyuanrong.site:3478", 
       "username": "yaoyuanrong", 
       "credential": "a962544785" 
-    },
-    {
-      "urls": "stun:123.57.14.193:3478",
     }
   ]
 };
@@ -74,10 +71,11 @@ createOffer().then(offer => {
 })
 
 async function setRemote(answer) {
+  console.log('设置控制端描述', answer)
   await pc.setRemoteDescription(answer) // 设置控制端描述
 }
 ipcRenderer.on('answer', (e, answer) => {
-  console.log('拿到答案')
+  console.log('拿到答案',answer)
   // 完成了 P2P 通信过程中的媒体协商部分
   setRemote(answer)
 })
