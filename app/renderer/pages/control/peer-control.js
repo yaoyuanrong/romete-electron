@@ -12,14 +12,14 @@ let serverConfig = {
     //   credential: "openrelayproject",
     // }
     { 
-      urls: ['turn:www.yaoyuanrong.site:3478?transport=udp',
-               'turn:www.yaoyuanrong.site:3478?transport=tcp',
-               'turn:www.yaoyuanrong.site:3478'], 
+      urls: "turu:123.57.14.193:3478", 
       username: "yaoyuanrong", 
       credential: "a962544785" 
     },
     {
-      urls: "stun:www.yaoyuanrong.site:3478"
+      urls: "stun:123.57.14.193:3478", 
+      username: "yaoyuanrong", 
+      credential: "a962544785" 
     }
   ]
 };
