@@ -17,8 +17,8 @@ let serverConfig = {
       credential: "a962544785" 
     },
     {
-      urls: "stun:123.57.14.193:3478?transport=udp", 
-    },
+      urls: "stun:stun1.l.google.com:19302", 
+    }
   ]
 };
 const pc = new window.RTCPeerConnection(serverConfig) // 创建RTC
