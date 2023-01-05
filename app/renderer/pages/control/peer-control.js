@@ -11,23 +11,13 @@ let serverConfig = {
     //   username: "openrelayproject",
     //   credential: "openrelayproject",
     // }
-    // { 
-    //   urls: "turn:123.57.14.193:3478?transport=udp", 
-    //   username: "yaoyuanrong", 
-    //   credential: "a962544785" 
-    // },
-    // {
-    //   urls: "stun:123.57.14.193:3478?transport=udp", 
-    // },
-    {
-      urls: "stun:150.158.82.144:5001",
-      username: "demo",
-      credential: "demo",
+    { 
+      urls: "turn:123.57.14.193:3478?transport=udp", 
+      username: "yaoyuanrong", 
+      credential: "a962544785" 
     },
     {
-      urls: "turn:150.158.82.144:5001",
-      username: "demo",
-      credential: "demo",
+      urls: "stun:123.57.14.193:3478?transport=udp", 
     },
   ]
 };
