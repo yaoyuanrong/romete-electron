@@ -11,15 +11,18 @@ let serverConfig = {
     //   username: "openrelayproject",
     //   credential: "openrelayproject",
     // }
-    { 
-      urls: "turu:123.57.14.193:3478", 
-      username: "yaoyuanrong", 
-      credential: "a962544785" 
-    },
+    // { 
+    //   urls: "turn:123.57.14.193:3478", 
+    //   username: "yaoyuanrong", 
+    //   credential: "a962544785" 
+    // },
+    // {
+    //   urls: "stun:123.57.14.193:3478", 
+    //   username: "yaoyuanrong", 
+    //   credential: "a962544785" 
+    // }
     {
-      urls: "stun:123.57.14.193:3478", 
-      username: "yaoyuanrong", 
-      credential: "a962544785" 
+      urls:"stun:stun.l.google.com:19302"
     }
   ]
 };
