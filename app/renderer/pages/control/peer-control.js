@@ -12,12 +12,12 @@ let serverConfig = {
     //   credential: "openrelayproject",
     // }
     { 
-      urls: "turn:123.57.14.193:3478", 
+      urls: "turn:123.57.14.193:3478?transport=udp", 
       username: "yaoyuanrong", 
       credential: "a962544785" 
     },
     {
-      urls: "stun:123.57.14.193:3478", 
+      urls: "stun:123.57.14.193:3478?transport=udp", 
     }
   ]
 };
