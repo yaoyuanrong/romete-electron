@@ -22,8 +22,19 @@ let serverConfig = {
     //   credential: "a962544785" 
     // }
     {
-      urls:"stun:stun.l.google.com:19302"
-    }
+      urls: [ "stun:ss-turn1.xirsys.com" ]
+   }, {
+      username: "g6Yt633K1egkLTWajyUBZpyrTF1LhZlQVCkhSWOn8Qrs_VXxC9h_rsC4VyTNeaJcAAAAAGO2e9l5YW95dWFucm9uZw==",
+      credential: "64b5ebc2-8cca-11ed-aa90-0242ac140004",
+      urls: [
+          "turn:ss-turn1.xirsys.com:80?transport=udp",
+          "turn:ss-turn1.xirsys.com:3478?transport=udp",
+          "turn:ss-turn1.xirsys.com:80?transport=tcp",
+          "turn:ss-turn1.xirsys.com:3478?transport=tcp",
+          "turns:ss-turn1.xirsys.com:443?transport=tcp",
+          "turns:ss-turn1.xirsys.com:5349?transport=tcp"
+      ]
+   }
   ]
 };
 const pc = new window.RTCPeerConnection(serverConfig) // 创建RTC
