@@ -3,16 +3,13 @@ const peer = new EventEmitter()
 const { ipcRenderer } = require('electron')
 let serverConfig = {
   "iceServers": [
-    // {
-    //   urls: "stun:openrelay.metered.ca:80",
-    // },
-    // {
-    //   urls: "turn:openrelay.metered.ca:80",
-    //   username: "openrelayproject",
-    //   credential: "openrelayproject",
-    // }
     { 
-      urls: "turn:123.57.14.193:3478?transport=udp", 
+      urls: "turn:www.yaoyuanrong.site:3478?transport=udp", 
+      username: "yaoyuanrong", 
+      credential: "a962544785" 
+    },
+    { 
+      urls: "turn:www.yaoyuanrong.site:3478?transport=tcp", 
       username: "yaoyuanrong", 
       credential: "a962544785" 
     },
