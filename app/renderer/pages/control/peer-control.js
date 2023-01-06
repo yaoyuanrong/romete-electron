@@ -3,18 +3,28 @@ const peer = new EventEmitter()
 const { ipcRenderer } = require('electron')
 let serverConfig = {
   "iceServers": [
-    { 
-      urls: "turn:www.yaoyuanrong.site:3478?transport=udp", 
-      username: "yaoyuanrong", 
-      credential: "a962544785" 
-    },
-    { 
-      urls: "turn:www.yaoyuanrong.site:3478?transport=tcp", 
-      username: "yaoyuanrong", 
-      credential: "a962544785" 
+    // { 
+    //   urls: "turn:www.yaoyuanrong.site:3478?transport=udp", 
+    //   username: "yaoyuanrong", 
+    //   credential: "a962544785" 
+    // },
+    // { 
+    //   urls: "turn:www.yaoyuanrong.site:3478?transport=tcp", 
+    //   username: "yaoyuanrong", 
+    //   credential: "a962544785" 
+    // },
+    // { 
+    //   urls: "stun:www.yaoyuanrong.site:3478"
+    // }
+    {
+      urls: "stun:150.158.82.144:5001",
+      username: "demo",
+      credential: "demo",
     },
     {
-      urls: "stun:stun1.l.google.com:19302", 
+      urls: "turn:150.158.82.144:5001",
+      username: "demo",
+      credential: "demo",
     }
   ]
 };
